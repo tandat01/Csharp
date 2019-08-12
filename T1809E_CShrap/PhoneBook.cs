@@ -9,36 +9,43 @@ namespace T1809E_CShrap
     {
         public event ChangeValue PhoneChange;
         
-        public List<PhoneNumber> PhoneList=new List<PhoneNumber>();
+        public List<PhoneNumber<List<string>>> PhoneList=new List<PhoneNumber<List<string>>>();
         
         
         public override bool insertPhone(string name, string phone)
         {
             if (PhoneList ==null)
             {
-                PhoneList=new List<PhoneNumber>();
+                PhoneList=new List<PhoneNumber<List<string>>>();
             }
             
-            foreach (PhoneNumber p in PhoneList)
+            foreach (PhoneNumber<List<string>> p in PhoneList)
             {
                 if (p.Name.Equals(name))
                 {
-                    if (!p.Phone.Equals(phone))
+                    /*if (!p.Phone.Equals(phone))
                     {
                         p.Phone += ":" + phone;
+                        return true;
+                    }*/
+                    if (!p.Phone.Contains(phone))
+                    {
+                        p.Phone.Add(phone);
                         return true;
                     }
 
                     return false;
                 }
             } 
-            PhoneList.Add(new PhoneNumber(name,phone));
+            List<string> ls=new List<string>();
+            ls.Add(phone);
+            PhoneList.Add(new PhoneNumber<List<string>>(name,ls));
             return true;
         }
 
         public override bool removePhone(string name)
         {
-            foreach (PhoneNumber p in PhoneList)
+            foreach (PhoneNumber<List<string>> p in PhoneList)
             {
                 if (p.Name.Equals(name))
                 {
@@ -50,13 +57,18 @@ namespace T1809E_CShrap
             return false;
         }
 
-        public override bool updatePhone(string name, string newphone)
+        public override bool updatePhone(string name,string oldphone, string newphone)
         {
-            foreach (PhoneNumber p in PhoneList)
+            foreach (PhoneNumber<List<string>> p in PhoneList)
             {
                 if (p.Name.Equals(name))
                 {
-                    p.Phone = newphone;
+                    //p.Phone = newphone;
+                    if (p.Phone.Contains(oldphone))
+                    {
+                        p.Phone.Remove(oldphone);
+                    }
+                    p.Phone.Add(newphone);
                     if (PhoneChange ==null)
                     {
                         PhoneChange += Notify;
@@ -74,9 +86,9 @@ namespace T1809E_CShrap
             Console.WriteLine(s);
         }
 
-        public override PhoneNumber searchPhone(string name)
+        public override PhoneNumber<List<string>> searchPhone(string name)
         {
-            foreach (PhoneNumber p in  PhoneList)
+            foreach (PhoneNumber<List<string>> p in  PhoneList)
             {
                 if (p.Name.Equals(name))
                 {

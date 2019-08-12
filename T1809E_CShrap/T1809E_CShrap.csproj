@@ -38,15 +38,19 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Chay.cs" />
         <None Include="Menu.cs" />
         <None Include="Boom.cs" />
+        <None Include="LabSecsion8.cs" />
         <Compile Include="Phone.cs" />
         <Compile Include="PhoneBook.cs" />
         <Compile Include="PhoneNumber.cs" />
         <None Include="Session5.cs" />
         <None Include="Session6.cs" />
         <None Include="Secssion7.cs" />
-        <Compile Include="secssion8.cs" />
+        <None Include="secssion8.cs" />
+        <None Include="KhachHang.cs" />
+        <Compile Include="Product.cs" />
         <Compile Include="Shoes.cs" />
         <None Include="Cart.cs" />
         <None Include="Fibonacci.cs" />
@@ -55,7 +59,7 @@
         <None Include="Max.cs" />
         <Compile Include="News.cs" />
         <None Include="Pro.cs" />
-        <Compile Include="Product.cs" />
+        <Compile Include="Product1.cs" />
         <None Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
